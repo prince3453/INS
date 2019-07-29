@@ -1,0 +1,81 @@
+
+package ins;
+
+import java.awt.BorderLayout;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class RSA {
+
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int e,d=0,p,q,n,count=0,count1=0,m,sm,fun;
+        System.out.println("Enter the number to be encrypted : ");
+        m=s.nextInt();
+        System.out.println("Enter the 1st prime number p : ");
+        p=s.nextInt();
+        System.out.println("Enter the 2nd prime number q : ");
+        q=s.nextInt();
+        for(int i=2;i<p;i++)
+        {
+            if(p%i==0)
+            {
+                count++;
+            }
+        }
+        for(int i=2;i<q;i++)
+        {
+            if(q%i==0)
+            {
+                count1++;
+            }
+        }
+        if(count==0 && count1==0)
+        {
+        sm=p*q;
+        fun=(p-1)*(q-1);
+        System.out.println("System modulus is " + sm );
+        System.out.println("FIE(N) is" + fun);
+        for(e=2;e<sm;e++)
+        {
+            if(gcd(e,fun)==1)
+            {
+                break;
+            }
+        }
+        System.out.println("Encryption Key is : " + e);
+        double c = (Math.pow(m, e)%sm);
+        System.out.println("Cipher text is "  + c);
+        for(int k=0;k<9;k++)
+        {
+            int x=1+(k*fun);
+            if(x%e==0)
+            {
+                d=x/e;
+                break;
+            }
+        }
+        System.out.println("Decryption key is : " + d);
+        BigInteger N =BigInteger.valueOf(sm);
+        BigInteger C =BigDecimal.valueOf(c).toBigInteger();
+        BigInteger msg =(C.pow(d).mod(N));
+        System.out.println("Plain text message is " + msg);
+        }
+        else
+        {
+            System.out.println("ENTER PRIME NUMBER INSTEAD OF NON PRIME NUMBER....");
+        }
+    }
+    public static int gcd(int e , int n)
+    {
+        if(e==0)
+        {
+            return n;
+        }
+        else
+        {
+            return gcd(n%e,e);
+        }
+    }
+}

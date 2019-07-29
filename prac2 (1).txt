@@ -1,0 +1,45 @@
+
+package pract1;
+
+import java.util.Scanner;
+
+public class Pract2 {
+
+
+    public static void main(String[] args) {
+        int k,i,key;
+        String str;
+        char y,n,a;
+        Scanner s = new Scanner(System.in);
+        System.out.println("enter the string : ");
+        str=s.nextLine();
+        System.out.println("enter the key : ");
+        key=s.nextInt();
+        System.out.println();
+        System.out.println("1 : Encryption");
+        System.out.println("2 : decryption");
+        k=s.nextInt();
+        if(k==1)
+        {
+            for(i=0;i<str.length();i++)
+            {
+                a=str.charAt(i);
+                a= (char) (a + key) ;
+                System.out.print(a);
+            }
+        }
+        else if(k==2)
+        {
+           for(i=0;i<str.length();i++)
+            {
+                a=str.charAt(i);
+                a= (char) (a - key) ;
+                System.out.print(a);
+            }
+        }
+        else
+        {
+            System.out.println("Enter proper choice");
+        }
+    }
+}

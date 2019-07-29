@@ -1,0 +1,60 @@
+
+import java.util.Scanner;
+
+public class prac3
+{
+    public static char p[]  = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
+            'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+            'w', 'x', 'y', 'z' };
+    
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the message: ");
+        String pt=sc.nextLine().toLowerCase();
+        System.out.println("Enter the key for a to z:");
+        char[] ch=sc.next().toCharArray();
+        System.out.println("1.Encryption");
+        System.out.println("2.Decryption");
+        int a=sc.nextInt();
+        if(a==1)
+        {
+            char c[] = new char[(pt.length())];
+            for (int i = 0; i < pt.length(); i++)
+            {
+                for (int j = 0; j < 26; j++)
+                {
+                if (p[j] == pt.charAt(i))
+                    {
+                        c[i] = ch[j];
+                        break;
+                    }
+                }
+            }
+            String en= new String(c);
+            System.out.println("Encrypted Msg is " + en);
+        }
+        else if(a==2)
+        {
+            char p1[] = new char[(pt.length())];
+            for (int i = 0; i < pt.length(); i++)
+            {
+                for (int j = 0; j < 26; j++)
+                {
+                     if (ch[j] == pt.charAt(i))
+                     {
+                            p1[i] = p[j];
+                            break;
+                     }
+                }
+            }
+           String en=new String(p1);
+            System.out.println("Decrypted message is " + en);
+        }
+        else
+        {
+            System.out.println("ENter appropriate chooice...");
+        }
+        sc.close();
+    }
+}
